@@ -37,9 +37,9 @@ The graph class is responsible for representing the graph,using adjacency lists,
 
 **-removeEdge:** Remove connection between two vertices.
 
-**-print_graph:**Presenting our graph.
+**-print_graph:** Presenting our graph.
 
-**-getAdjList:**Getting the vertices adjacent to a given vertex.
+**-getAdjList:** Getting the vertices adjacent to a given vertex.
 
 **-getNumVertices:** Getting the number of vertices of a given graph.
 
