@@ -29,6 +29,20 @@ The project includes implementations of fundamental data structures:
 
 **-Union-Find:** Data structure for disjoint sets, efficient for cennectivity checks, implemented without STL.
 
+## Graph Class Overviwe
+
+The graph class is responsible for representing the graph,using adjacency lists,and includes basic methods:
+
+**-addEdge:** Create connection between two vertices with weight.
+
+**-removeEdge:** Remove connection between two vertices.
+
+**-print_graph:**Presenting our graph.
+
+**-getAdjList:**Getting the vertices adjacent to a given vertex.
+
+**-getNumVertices:** Getting the number of vertices of a given graph.
+
 ## Installation and Usage
 
 **Compilation:** To compile-using the provided MakeFile :
