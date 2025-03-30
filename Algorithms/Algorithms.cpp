@@ -125,6 +125,11 @@ Graph Algorithms::dijkstra(const Graph& g,int source,int dist[],int parent[]){
                 //Saves the neighbor vertex of u(v),and the edge's size (u<----->v)
                 int v=neighbor->dest;
                 int weight=neighbor->weight;
+
+                //On Dijkstra-->all the edges are positives
+                if(weight<=0){
+                    throw std::invalid_argument("Edge weight must be positive");
+                }
                 if(!visited[v]&& dist[u]+weight<dist[v]){
                     dist[v]=dist[u]+weight; //The shortest distance 
                     parent[v]=u; //The parent

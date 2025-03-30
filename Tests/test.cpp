@@ -152,6 +152,17 @@ TEST_CASE("Invalid source vertex"){
 
     CHECK_THROWS_AS(Algorithms::dijkstra(g,5,dist,parent),std::invalid_argument);
 }
+
+TEST_CASE("Invalid source vertex"){
+    Graph g(3);
+    g.addEdge(0,1,1);
+    g.addEdge(1,2,-2);
+
+    int dist[3];
+    int parent[3];
+
+    CHECK_THROWS_AS(Algorithms::dijkstra(g,5,dist,parent),std::invalid_argument);
+}
 //Prim:
 TEST_CASE("Get a valid MST"){
      Graph g(9);
