@@ -153,7 +153,7 @@ TEST_CASE("Invalid source vertex"){
     CHECK_THROWS_AS(Algorithms::dijkstra(g,5,dist,parent),std::invalid_argument);
 }
 
-TEST_CASE("Invalid source vertex"){
+TEST_CASE("Negative edge"){
     Graph g(3);
     g.addEdge(0,1,1);
     g.addEdge(1,2,-2);
