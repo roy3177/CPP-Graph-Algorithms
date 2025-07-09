@@ -104,7 +104,7 @@ TEST_CASE("Checking the DFS-->return correct tree"){
 
 
     int parent[6];
-    Graph tree=Algorithms::dfs(g,0,parent);
+    Algorithms::dfs(g,0,parent);
 
     CHECK(parent[0]==-1);
     CHECK((parent[1]==2||parent[2]==3));

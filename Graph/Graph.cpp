@@ -4,14 +4,14 @@
 
 namespace graph{
 
-//Implements our constructor:
+//Constructor-->create new graph with constant number of vertices:
 Graph::Graph(int vertices){
     numVertx=vertices;
 
     //Initializing all the vertices with empty adjacency list:
     //Every node start without neighbors
-    for(size_t i=0; i<MAX_VERTICES;i++){
-        adjList[i]=nullptr;
+    for(size_t i=0; i<vertices;i++){
+        adjList[i]=nullptr; 
     }
 }
 
@@ -34,11 +34,26 @@ void Graph::addEdge(int source, int destination, int weight) {
         throw std::invalid_argument("Invalid vertex index in addEdge");
     }
 
+    //Checking if we added the same edge before:
+    Node* current = adjList[source];
+    while (current != nullptr) {
+        if (current->dest == destination) {
+            // Edge already exists, no need to add it again:
+            std::cerr << "Edge from " << source << " to " << destination << " already exists.\n";
+            return;
+        }   
+        current = current->next;
+    }
+
+    //Our graph is undirected, so we add the edge in both directions:
+
     // Adding the edge to the graph:
+    // x------->y
     Node* newNode = new Node{destination, weight, adjList[source]};
     adjList[source] = newNode;
 
     // Adding the reverse edge (undirected graph):
+    // y------->x
     Node* newNodeBack = new Node{source, weight, adjList[destination]};
     adjList[destination] = newNodeBack;
 }
@@ -63,8 +78,26 @@ void Graph:: removeEdge(int source,int destination){
      if (source < 0 || destination < 0 || source >= numVertx || destination >= numVertx) {
         throw std::invalid_argument("Invalid vertex index in addEdge");
     }
+    //Check if the edge exists before removing it:
+    Node* current2 = adjList[source];
+    bool edgeExists = false;
+    while (current2 != nullptr) {
+        if (current2->dest == destination) {
+            edgeExists = true;
+            break;
+        }
+        current2 = current2->next;
+    }
+    
+    //If the edge does not exist, we do not remove it:
+    if (!edgeExists) {
+        std::cerr << "Edge does not exist.\n";
+        return;
+    }
 
-    //Goes on the list of source,  and removes the edge that comes to destination:
+
+    //Removing the edge from the adjacency list of the source vertex:
+    //We use double pointer to be able to change the head of the list:
     Node** current=&adjList[source];
     while(current!=nullptr){
         if((*current)->dest==destination){
@@ -76,15 +109,15 @@ void Graph:: removeEdge(int source,int destination){
         current=&((*current)->next);
     }
     //Doing the same on the reverse way->because our graph is undirected:
-     Node** current2=&adjList[destination];
-    while(current2!=nullptr){
-        if((*current2)->dest==source){
-            Node* temp=*current2;
-            *current2=(*current2)->next;
+     Node** current3=&adjList[destination];
+    while(current3!=nullptr){
+        if((*current3)->dest==source){
+            Node* temp=*current3;
+            *current3=(*current3)->next;
             delete temp;
             break;
         }
-        current2=&((*current2)->next);
+        current3=&((*current3)->next);
     }
     
 }
@@ -102,5 +135,6 @@ Node* Graph::getAdjList(int vertex)const{
     return adjList[vertex];
 }
 
-    
 } // namespace graph
+
+

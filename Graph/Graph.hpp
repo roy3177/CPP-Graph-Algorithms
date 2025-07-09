@@ -5,16 +5,17 @@
 
 #include <iostream>
 
-const int MAX_VERTICES=100;
+const int MAX_VERTICES=100; // Maximum number of vertices in the graph
+
 
 namespace graph{
 
 
 //The struct of the edge:
 struct Node{
-    int dest;     //The number of the vertix that the edge comes
+    int dest;     //The destination vertex of the edge
     int weight;  //The weight of the edge
-    Node* next;  //Points to the next edge 
+    Node* next;  //Pointer to the next edge in the adjacency list
 
 };
 
@@ -24,6 +25,7 @@ private:
     int numVertx;
 
     //Structure, that represents adjacency list:
+    //Every cell in the array introduces lisst of neighbors for the vertex:
     Node* adjList[MAX_VERTICES];
 
 public:

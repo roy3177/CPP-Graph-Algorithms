@@ -3,7 +3,7 @@
 #ifndef PRIORITY_QUEUE_HPP
 #define PRIORITY_QUEUE_HPP
 
-#define MAX_VERTICES 1000
+#define MAX_VERTICES 1000 
 
 //Node in our priority queue:
 struct PQNode{

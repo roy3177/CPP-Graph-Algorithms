@@ -1,7 +1,9 @@
 //roymeoded2512@gmail.com
 
-#include "Algorithms.hpp"
-#include "../DataStructures/Queue.hpp"
+#include "Algorithms/Algorithms.hpp"
+#include "DataStructures/Queue.hpp"
+#include "Graph/Graph.hpp"
+
 using namespace graph;
 
 int main(){

@@ -12,12 +12,12 @@ void PriorityQueue::insert(int vertex,int distance){
     data[size++]={vertex,distance};
 }
 
-//
+//Extract the vertex with the minimum distance from the queue:
 int PriorityQueue::extractMin(){
     int minIndex=-1; 
-    int minValue=1e9;//Save the minimum value that we found
+    int minValue=1e9;//We start with the maximum value, so we can find the minimum
 
-    //Check which vertex taking the smallest distance+ save it's index:
+    //Check which vertex taking the smallest distance + save it's index:
     for(int i=0;i<size;i++){
         if(data[i].distance<minValue){
             minValue=data[i].distance;
@@ -27,11 +27,10 @@ int PriorityQueue::extractMin(){
     //Save the number of the vertex that we return from the queue:
     int result=data[minIndex].vertex;
 
-
-    //Taking the last vertex in the queue-->put him on the place of the vertex that got removed-->reduce the size:
+    //If we found the vertex with the minimum distance, we remove it from the queue:
     data[minIndex]=data[--size];
 
-    return result;
+    return result; //Return the vertex with the minimum distance
 }
 
 //Check if the queue is empty:
@@ -40,7 +39,7 @@ bool PriorityQueue::isEmpty()const{
 }
 
 
-//If we find shorter path-we decrease the vertex that on the queue:
+////If we find shorter path-we decrease the vertex that on the queue:
 void PriorityQueue::decreaseKey(int vertex,int newDis){
     for(int i=0;i<size;i++){
         //If the vertex already on the queue + has smallest distance from before:

@@ -8,8 +8,8 @@ namespace graph{
 
 class UnionFind{
 private:
-    int parent[MAX_VERTICES];
-    int rank[MAX_VERTICES]; 
+    int parent[MAX_VERTICES]; // Array to store the parent of each vertex
+    int rank[MAX_VERTICES];  // Array to store the rank (or size) of each set
 
 public:
     UnionFind(int size); //Constructor

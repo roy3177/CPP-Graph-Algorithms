@@ -3,38 +3,21 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic -g
 
-# Folders
-SRC_DIRS = Graph Algorithms DataStructures
-TEST_DIR = Tests
-INCLUDES = -I. $(addprefix -I, $(SRC_DIRS))
+all: main
 
-# Source Files
-SRCS := $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.cpp))
-OBJS := $(SRCS:.cpp=.o)
+main:
+	$(CXX) $(CXXFLAGS) -I. -IGraph -IAlgorithms -IDataStructures \
+		Graph/*.cpp Algorithms/*.cpp DataStructures/*.cpp main.cpp -o main
 
-# Executables
-MAIN_EXE = main
-TEST_EXE = test_exe
+test:
+	$(CXX) $(CXXFLAGS) -I. -IGraph -IAlgorithms -IDataStructures \
+		Graph/*.cpp Algorithms/*.cpp DataStructures/*.cpp Tests/test.cpp -o test
 
-# Targets
-all: $(MAIN_EXE)
-
-$(MAIN_EXE): $(OBJS) main.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^
-
-Main: $(MAIN_EXE)
-	./$(MAIN_EXE)
-
-$(TEST_EXE): $(filter-out main.cpp, $(SRCS)) $(TEST_DIR)/test.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^
-
-test: $(TEST_EXE)
-	./$(TEST_EXE)
-
-valgrind: $(MAIN_EXE)
-	valgrind --leak-check=full --show-leak-kinds=all ./$(MAIN_EXE)
+valgrind: main test			
+	valgrind --leak-check=full --show-leak-kinds=all ./main
+	valgrind --leak-check=full --show-leak-kinds=all ./test
 
 clean:
-	rm -f $(OBJS) $(MAIN_EXE) $(TEST_EXE)
+	rm -f main test
 
-.PHONY: all Main test valgrind clean
+.PHONY: all main test valgrind clean

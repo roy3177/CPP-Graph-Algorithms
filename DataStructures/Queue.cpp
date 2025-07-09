@@ -24,7 +24,7 @@ void Queue:: enqueue(int value){
         std::cout <<"Queue is full!"<< std::endl;
         return;
     }
-    data[rear++]=value;
+    data[rear++]=value; //Put the value in the end of the queue
 }
 
 //Remove the first element of the queue:
@@ -33,7 +33,7 @@ int Queue::dequeue(){
         std::cout<<"There is no element to put out!"<<std::endl;
         return -1;
     }
-    return data[front++]; 
+    return data[front++]; //Return the first element and increase the front index
 }
 
 //Show the first element of the queue:
@@ -42,7 +42,7 @@ int Queue:: peek()const{
         std::cout<<"The queue is empty!"<<std::endl;
         return -1;
     }
-    return data[front];
+    return data[front]; // Return the first element without removing it
 }
 
 
